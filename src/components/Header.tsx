@@ -1,10 +1,11 @@
+"use client"
 import Link from "next/link";
 import { Nav, Navbar } from "reactstrap";
 
 export default function Header(){
     return (
         <Navbar>
-            <Link href="/" passHref>
+            <Link href="/" >
                 <a className="navbar-brand">
                     Inicio
                 </a>
