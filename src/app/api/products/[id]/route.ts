@@ -1,9 +1,10 @@
 import {NextResponse, type NextRequest} from "next/server";
+import products from '@/../../db.json'
+export async function GET(request: NextRequest, context:{params:any}) {
+  const id = context.params.id;
+  const product = products.find(p=>p.id === +id)  
 
-export async function GET(request: NextRequest, context) {
-  const id = context.params.id; // '1'
-
-  return NextResponse.json({id})
+  return NextResponse.json(product)
 }
 
 
