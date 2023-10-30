@@ -4,22 +4,18 @@ import { Nav, Navbar } from "reactstrap";
 
 export default function Header(){
     return (
-        <Navbar>
-            <Link href="/" >
-                <a className="navbar-brand">
-                    Inicio
-                </a>
-            </Link>
-            <Nav className="flex-row">
-                <Link href="/products">
-                    <a className="nav-link">Products</a>
-                </Link>
-                <Link href="/cart">
-                    <a className="nav-link">
-                        Carrinho
-                    </a>
-                </Link>
-            </Nav>
-        </Navbar>
-    )
+      <Navbar>
+        <Link href="/" className="navbar-brand text-light">
+          Inicio
+        </Link>
+        <Nav className="flex-row">
+          <Link href="/products" className="nav-link text-light">
+            Products
+          </Link>
+          <Link href="/cart" className="nav-link text-light">
+            Carrinho
+          </Link>
+        </Nav>
+      </Navbar>
+    );
 }
