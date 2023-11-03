@@ -20,6 +20,5 @@ export async function fetchProduct(id: string | number) {
       next: { revalidate: 10 },
     }
   ).then((res) => res.json());
-  // console.log(id)
   return product;
 }

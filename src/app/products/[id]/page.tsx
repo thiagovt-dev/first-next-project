@@ -1,52 +1,42 @@
 import ProductDetails from "@/components/ProductDetails";
-import { ProductType, fetchProduct, fetchProducts } from "@/services/products";
+import { fetchProduct, fetchProducts } from "@/services/products";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { ReactNode } from "react";
 
-type MetaProps = {
-  params: ProductType;
+type ParamsProps = {
+  params: { id: string };
 };
-export const generateMetadata = ({ params }: MetaProps): Metadata => {
+
+export const generateMetadata = async ({
+  params,
+}: ParamsProps): Promise<Metadata> => {
+  const product = await fetchProduct(params.id);
+
   return {
-    title: `${params.name}`,
-    description: `${params.description}`,
+    title: `${product.name}`,
+    description: `${product.description}`,
     icons: {
-      icon: "/products/favicon.ico",
+      icon: "/favicon.ico",
     },
   };
 };
-
-export async function getProduct(params: { id: string }) {
-  const id = params?.id;
-  if (typeof id === "string") {
-    const product = fetchProduct(id);
-    return {
-      params: {
-        product,
-      },
-    };
-  }
-
-  return redirect("/products");
-}
-
-export const dynamicParams = false; // substitui o fallback do getStaticPaths
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const products = await fetchProducts();
-  const paths = products.map((product) => {
-    return [{ id: product.id.toString() }];
-  });
-  return paths;
+
+  return products.map((product) => ({ id: product.id.toString() }));
 }
 
-const Products = async ({ params }: { params: ProductType }) => {
+const Product = async ({ params: { id } }: ParamsProps) => {
+  const product = await fetchProduct(id);
+
+  if (!product) redirect("/products");
+
   return (
     <div className="container mt-5">
-      <h1>test: {params.id}</h1>
-      {/* <ProductDetails product={product} /> */}
+      <ProductDetails product={product} />
     </div>
   );
 };
-export default Products;
+export default Product;
