@@ -17,12 +17,10 @@ import { ReactNode } from "react";
 //   };
 // };
 
-export async function getProduct(context?: { params: { id: string } }) {
-  const id = context?.params?.id;
-  console.log("product:" + id);
+export async function getProduct(params: { id: string }) {
+  const id = params?.id;
   if (typeof id === "string") {
     const product = fetchProduct(id);
-    console.log("product:" + id)
     return product;
   }
 
@@ -36,27 +34,23 @@ export async function getProduct(context?: { params: { id: string } }) {
 // }
 
 export const dynamicParams = false; // substitui o fallback do getStaticPaths
+
 export async function generateStaticParams() {
   const products = await fetchProducts();
-
   const paths = products.map((product) => {
-    console.log("fui chamado: " + product.id)
     return [{ id: product.id.toString() }];
   });
+  console.log("generateStaticParams foi acionado")
   return paths;
 }
 
 
 
-const Products = async (params: {
-  product?: ProductType;
-}) => {
-  const prod = getProduct()
-  // console.log(prod);
-
+const Products = async ({ params }: { params:ProductType }) => {
+  
   return (
     <div className="container mt-5">
-      {/* <h1>test: {params.product}</h1> */}
+       <h1>test: {params.name}</h1> 
       {/* <ProductDetails product={product} /> */}
     </div>
   );
