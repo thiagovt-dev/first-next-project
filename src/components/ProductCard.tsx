@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ProductType } from "@/services/products";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,25 +10,24 @@ type ProductCardProps = {
   product: ProductType;
 };
 
- const ProductCard:React.FC<ProductCardProps> =({ product })=> {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { id, name, imageUrl, price } = product;
-  const [toastIsOpen, setToastIsOpen] = useState(false)
+  const [toastIsOpen, setToastIsOpen] = useState(false);
 
-  function handleToast(){
-    setToastIsOpen(true)
-    setTimeout(()=> setToastIsOpen(false), 3000)
+  function handleToast() {
+    setToastIsOpen(true);
+    setTimeout(() => setToastIsOpen(false), 3000);
   }
   return (
     <>
-      {" "}
       <Card>
         <Link href={`/products/${id}`}>
           <Image
             className="card-img-top"
             src={imageUrl}
-            width={500}
-            height={600}
-            alt="Picture of the author"
+            alt="Product"
+            height={300}
+            width={400}
           />
         </Link>
         <CardBody>
@@ -44,13 +43,13 @@ type ProductCardProps = {
             color="dark"
             className="pb-2"
             block
-            onClick={() => handleToast}>
+            onClick={() => handleToast()}>
             Adicionar ao Carrinho
           </Button>
         </CardBody>
       </Card>
-      <SuccessToast toastIsOpen={toastIsOpen} setToastIsOpen={setToastIsOpen}/>
+      <SuccessToast toastIsOpen={toastIsOpen} setToastIsOpen={setToastIsOpen} />
     </>
   );
-}
-export default ProductCard
+};
+export default ProductCard;

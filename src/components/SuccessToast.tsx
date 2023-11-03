@@ -13,7 +13,6 @@ export default function SuccessToast(props: {
         <ToastBody className="d-flex justify-content-between">
             The product was added to the cart.
             <Button close className="btn-close-white" onClick={()=>props.setToastIsOpen(false)}>
-
             </Button>
 
         </ToastBody>

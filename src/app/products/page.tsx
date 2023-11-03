@@ -1,11 +1,10 @@
 import ProductsList from "@/components/ProductsList";
-import { ProductType, fetchProducts } from "@/services/products";
 import { Metadata } from "next";
-import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Products",
   description: "Products main page",
+ 
 };
 
 

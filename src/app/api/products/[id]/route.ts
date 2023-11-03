@@ -1,10 +1,13 @@
-import {NextResponse, type NextRequest} from "next/server";
+import {NextResponse} from "next/server";
 import products from '@/../../db.json'
-export async function GET(request: NextRequest, context:{params:any}) {
-  const id = context.params.id;
-  const product = products.find(p=>p.id === +id)  
+import { ProductType } from "@/services/products";
 
-  return NextResponse.json(product)
+export async function GET(context:{params: { id: string; }}) {
+  const id = context.params.id;
+  console.log(id)
+  // const product = products.find(p=>p.id === Number(id))  
+  // console.log(product)
+  return NextResponse.json({id})
 }
 
 
