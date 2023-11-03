@@ -46,9 +46,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-type ProductsProps = {
-  product: ProductType;
-};
+
 
 const Products = async (params: {
   product?: ProductType;
