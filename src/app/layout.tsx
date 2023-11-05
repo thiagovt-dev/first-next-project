@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Header from '@/components/Header'
+import CartProvider from '@/hooks/useCart'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +18,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`bg-dark text-light ${inter.className}`}>
-        <Header/>
-        {children}
-      </body>
-    </html>
+    <CartProvider>
+      <html lang="en">
+        <body className={`bg-dark text-light ${inter.className}`}>
+          <Header />
+          {children}
+        </body>
+      </html>
+    </CartProvider>
   );
 }
