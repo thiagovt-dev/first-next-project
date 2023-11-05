@@ -19,7 +19,6 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     setToastIsOpen(true);
     setTimeout(() => setToastIsOpen(false), 3000);
   }
-  console.log(product);
   return (
     <Row>
       <Col md={6}>
