@@ -9,16 +9,19 @@ export type ProductType = {
 
 export async function fetchProducts() {
   const products: ProductType[] = await fetch(
-    `${process.env.NEXT_PUBLIC_APIURL}api/products`
+    `http://localhost:3000/api/products`
   ).then((res) => res.json());
   return products;
 }
 export async function fetchProduct(id: string | number) {
   const product: ProductType = await fetch(
-    `${process.env.NEXT_PUBLIC_APIURL}api/products/${id}`,
+    `http://localhost:3000/api/products/${id}`,
     {
       next: { revalidate: 10 },
     }
   ).then((res) => res.json());
   return product;
 }
+
+// http://localhost:3000/
+//process.env.NEXT_PUBLIC_APIURL
