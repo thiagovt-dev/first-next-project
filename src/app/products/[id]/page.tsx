@@ -1,4 +1,4 @@
-import ProductDetails from "@/components/ProductDetails";
+import ProductDetails from "@/components/ProductComponents/ProductDetails";
 import { fetchProduct, fetchProducts } from "@/services/products";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
